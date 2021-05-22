@@ -82,12 +82,12 @@ RSpec.describe 'Task', type: :system do
         # TODO: FactoryBotのtraitを利用してください
         # project = FactoryBot.create(:project)
         # task = FactoryBot.create(:task, project_id: project.id, status: :done, completion_date: Time.current.yesterday)
-        visit edit_project_task_path(project, other_task)
+        visit edit_project_task_path(project, task_done)
         select 'todo', from: 'Status'
         click_button 'Update Task'
         expect(page).to have_content('todo')
         expect(page).not_to have_content(Time.current.strftime('%Y-%m-%d'))
-        expect(current_path).to eq project_task_path(project, other_task)
+        expect(current_path).to eq project_task_path(project, task_done)
       end
     end
   end
